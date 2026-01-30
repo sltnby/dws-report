@@ -724,6 +724,8 @@ DELIMITER ;
 
 CALL WarehouseReportNew();
 
+
+-- Showing the customers who ordered multiple distinct products within the same order
 SELECT
 c.customer_id,
 oi.order_id,
@@ -735,6 +737,7 @@ GROUP BY c.first_name, c.last_name, oi.order_id
 HAVING COUNT(oi.product_id) > 1;
 
 
+-- Showing how the orders with multiple distinct products are displayed in orderitems
 WITH temp AS (
 SELECT
 oi.*,
